@@ -18,7 +18,10 @@ if test -n "${SOURCES}" ; then
     for SOURCE in $SOURCES; do
         sudo -E apt-add-repository ppa:$SOURCE
     done
+else
+    echo ">>>>> APT: INSTALL SOURCES.. NO SOURCES"
 fi
+
 echo ">>>>> APT: UPDATE.."
 sudo -E apt-get -o Acquire::Retries=3 update
 sudo -E DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=3 -y --no-install-suggests --no-install-recommends install ${PACKAGES}
