@@ -8,13 +8,14 @@
 # As the yaml syntax for Drone CI is rather limited.
 
 # Generate pipeline for Linux platform compilers.
-def linux_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch="amd64", image="cppalliance/ubuntu16.04:1", buildtype="boost", environment={}, globalenv={}, jobuuid="", privileged=False):
+def linux_cxx(name, cxx, cxxflags="", packages="", sources="", llvm_os="", llvm_ver="", arch="amd64", image="cppalliance/ubuntu16.04:1", buildtype="boost", environment={}, globalenv={}, jobuuid="", privileged=False):
   environment_global = {
       "TRAVIS_BUILD_DIR": "/drone/src",
 
       "CXX": cxx,
       "CXXFLAGS": cxxflags,
       "PACKAGES": packages,
+      "SOURCES": sources,
       "LLVM_OS": llvm_os,
       "LLVM_VER": llvm_ver
       }
@@ -45,7 +46,7 @@ def linux_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch
           # "apt-get -o Acquire::Retries=3 update && DEBIAN_FRONTEND=noninteractive apt-get -y install tzdata && apt-get -o Acquire::Retries=3 install -y sudo software-properties-common wget curl apt-transport-https git make cmake apt-file sudo unzip libssl-dev build-essential autotools-dev autoconf libc++-helpers automake g++",
           # "for i in {1..3}; do apt-add-repository ppa:git-core/ppa && break || sleep 2; done",
           # "apt-get -o Acquire::Retries=3 update && apt-get -o Acquire::Retries=3 -y install git",
-          "BOOST_CI_ORG=sdarwin BOOST_CI_BRANCH=drone && wget https://github.com/$BOOST_CI_ORG/boost-ci/archive/$BOOST_CI_BRANCH.tar.gz && tar -xvf $BOOST_CI_BRANCH.tar.gz && mv boost-ci-$BOOST_CI_BRANCH .drone/boost-ci",
+          "BOOST_CI_ORG=sdarwin BOOST_CI_BRANCH=dronetest && wget https://github.com/$BOOST_CI_ORG/boost-ci/archive/$BOOST_CI_BRANCH.tar.gz && tar -xvf $BOOST_CI_BRANCH.tar.gz && mv boost-ci-$BOOST_CI_BRANCH .drone/boost-ci",
           "echo '==================================> PACKAGES'",
           # "./.drone/linux-cxx-install.sh",
           "./.drone/boost-ci/ci/drone/linux-cxx-install.sh",
@@ -57,7 +58,7 @@ def linux_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch
     ]
   }
 
-def windows_cxx(name, cxx="g++", cxxflags="", packages="", llvm_os="", llvm_ver="", arch="amd64", image="cppalliance/dronevs2019", buildtype="boost", environment={}, globalenv={}, privileged=False):
+def windows_cxx(name, cxx="g++", cxxflags="", packages="", sources="", llvm_os="", llvm_ver="", arch="amd64", image="cppalliance/dronevs2019", buildtype="boost", environment={}, globalenv={}, privileged=False):
   environment_global = {
       "CXX": cxx,
       "CXXFLAGS": cxxflags,
@@ -96,7 +97,7 @@ def windows_cxx(name, cxx="g++", cxxflags="", packages="", llvm_os="", llvm_ver=
       }
     ]
   }
-def osx_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch="amd64", image="", osx_version="", xcode_version="", buildtype="boost", environment={},  globalenv={}, jobuuid="", privileged=False):
+def osx_cxx(name, cxx, cxxflags="", packages="", sources="", llvm_os="", llvm_ver="", arch="amd64", image="", osx_version="", xcode_version="", buildtype="boost", environment={},  globalenv={}, jobuuid="", privileged=False):
   environment_global = {
       # "TRAVIS_BUILD_DIR": "/drone/src",
       "CXX": cxx,
@@ -153,5 +154,5 @@ def osx_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch="
     ]
   }
 
-def freebsd_cxx(name, cxx, cxxflags="", packages="", llvm_os="", llvm_ver="", arch="amd64", image="", buildtype="boost", environment={}, globalenv={}, jobuuid="", privileged=False):
+def freebsd_cxx(name, cxx, cxxflags="", packages="", source="", llvm_os="", llvm_ver="", arch="amd64", image="", buildtype="boost", environment={}, globalenv={}, jobuuid="", privileged=False):
     pass

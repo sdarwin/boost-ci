@@ -13,7 +13,14 @@ if test -n "${LLVM_OS}" ; then
         sudo -E apt-add-repository "deb http://apt.llvm.org/${LLVM_OS}/ llvm-toolchain-${LLVM_OS} main"
     fi
 fi
+if test -n "${SOURCES}" ; then
+    echo ">>>>> APT: INSTALL SOURCES.."
+    for SOURCE in $SOURCES; do
+        sudo -E apt-add-repository ppa:$SOURCE
+    done
+fi
 echo ">>>>> APT: UPDATE.."
 sudo -E apt-get -o Acquire::Retries=3 update
+sudo -E DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=3 -y --no-install-suggests --no-install-recommends install ${PACKAGES}
 echo ">>>>> APT: INSTALL ${PACKAGES}.."
 sudo -E DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=3 -y --no-install-suggests --no-install-recommends install ${PACKAGES}
