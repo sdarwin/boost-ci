@@ -38,7 +38,8 @@ fi
 
 cd ..
 
-git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/boost.git boost-root
+#git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/boost.git boost-root
+git clone -b master --depth 1 https://github.com/boostorg/boost.git boost-root
 cd boost-root
 git submodule update -q --init tools/boostdep
 mkdir -p libs/$SELF
