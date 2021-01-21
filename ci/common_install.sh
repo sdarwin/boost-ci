@@ -77,4 +77,8 @@ function show_bootstrap_log
 trap show_bootstrap_log ERR
 ./bootstrap.sh --with-toolset=${B2_TOOLSET%%-*}
 trap - ERR
+echo "DEBUGGING"
+pwd
+ls -al
+echo "About to run './b2 headers'"
 ./b2 headers
