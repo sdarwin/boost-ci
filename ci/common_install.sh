@@ -41,6 +41,8 @@ cd ..
 #git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/boost.git boost-root
 git clone -b test2 --depth 1 https://github.com/sdarwin/boost.git boost-root
 cd boost-root
+echo DEBUGGING
+git submodule status
 git submodule update -q --init tools/boostdep
 mkdir -p libs/$SELF
 cp -r $BOOST_CI_SRC_FOLDER/* libs/$SELF
