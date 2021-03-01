@@ -36,7 +36,11 @@ SET B2_CXXFLAGS=%OLD_B2_CXXFLAGS%
 
 b2 headers
 
+echo "Near the end of common_install.bat"
+
 if DEFINED B2_CI_VERSION (
 	REM Go back to lib folder to allow ci\build.bat to work
 	cd libs\%SELF%
 )
+
+echo "At the end of common_install.bat"
