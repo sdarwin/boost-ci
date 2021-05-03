@@ -42,10 +42,12 @@ dir libs
 b2 headers
 
 if DEFINED B2_CI_VERSION (
-	REM Go back to lib folder to allow ci\build.bat to work
-	echo "Debugging"
-	pwd
-	dir
-        dir libs
-	cd libs\%SELF%
+REM Go back to lib folder to allow ci\build.bat to work
+echo "Debugging 2"
+pwd
+dir
+dir libs
+dir libs\json
+timeout /t 5
+REM cd libs\%SELF%
 )
