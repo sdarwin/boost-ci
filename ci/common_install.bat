@@ -45,3 +45,4 @@ echo "Debugging 2"
 pwd
 dir
 dir libs
+echo "Done with that debugging"
