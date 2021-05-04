@@ -1,4 +1,4 @@
-@ECHO OFF
+@ECHO ON
 setlocal enabledelayedexpansion
 
 IF NOT DEFINED B2_CI_VERSION (
