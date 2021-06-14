@@ -35,7 +35,7 @@ c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
 
 FOR %%a IN ("gcc" "icu" "libiconv" "openssl" "xz" "zlib") DO (
     c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
-      "pacman -Sy --noconfirm %FLAVOR%/mingw-w64-%ARCH%-%%a" || EXIT /B 1
+      "pacman -Sy --needed --noconfirm %FLAVOR%/mingw-w64-%ARCH%-%%a" || EXIT /B 1
 )
 c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
   "pacman --sync --needed --noconfirm python3" || EXIT /B 1
