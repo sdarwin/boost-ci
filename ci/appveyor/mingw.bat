@@ -14,6 +14,16 @@ SET UPPERFLAVOR=%FLAVOR%
 CALL :TOUPPER UPPERFLAVOR
 
 :: Upgrade pacman packages
+:: https://www.msys2.org/news/#2020-06-29-new-packagers
+>if not exist "C:\TEMP" mkdir C:\TEMP
+(
+echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+echo pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+echo pacman -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+)>C:\TEMP\updatekeys.sh
+
+c:\msys64\usr\bin\bash -l -c "C:\TEMP\updatekeys.sh" || EXIT /B 1
 c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
