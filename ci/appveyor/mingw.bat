@@ -14,7 +14,7 @@ SET UPPERFLAVOR=%FLAVOR%
 CALL :TOUPPER UPPERFLAVOR
 
 :: Upgrade pacman packages
-pacman -Syu --noconfirm
+c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
 :: Optional: comment out ones this library does not need, 
