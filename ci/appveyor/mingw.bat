@@ -13,6 +13,9 @@ echo using gcc : %FLAVOR% : %ARCH%-w64-mingw32-g++.exe ; > %USERPROFILE%\user-co
 SET UPPERFLAVOR=%FLAVOR%
 CALL :TOUPPER UPPERFLAVOR
 
+:: Upgrade pacman packages
+pacman -Syu --noconfirm
+
 :: Install packages needed to build boost
 :: Optional: comment out ones this library does not need, 
 :: so people can copy this script to another library.
