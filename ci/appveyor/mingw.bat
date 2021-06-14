@@ -21,12 +21,13 @@ if not exist "C:\TEMP" mkdir C:\TEMP
 (
 echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
 echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-echo pacman-key --noconfirm --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+echo pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
 echo pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
 )>C:\TEMP\updatekeys.sh
 
 c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatekeys.sh" || EXIT /B 1
-:: c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
+c:\msys64\usr\bin\bash -l -c "pacman -Sy pacman --noconfirm" || EXIT /B 1
+c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
 
 :: Install packages needed to build boost
