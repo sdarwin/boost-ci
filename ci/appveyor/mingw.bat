@@ -39,7 +39,6 @@ echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/pacman-5.2.1-6
 echo else
 echo     echo "Not upgrading pacman"
 echo fi
-echo done
 )>C:\TEMP\updatepacman.sh
 
 c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
