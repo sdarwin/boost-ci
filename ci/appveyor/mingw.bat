@@ -21,15 +21,14 @@ if not exist "C:\TEMP" mkdir C:\TEMP
 (
 echo echo "Parsing pacman version"
 echo upgradepacman="no"
-echo pacversion=$(pacman -V | grep -o -E '[0-9]+\.[0-9]+\.[0-9]' | head -n 1)
+echo pacversion=$(pacman -V ^| grep -o -E '[0-9]+\.[0-9]+\.[0-9]' ^| head -n 1 ^)
 echo echo "pacman version is $pacversion"
-echo arrversion=(${pacversion//./ })
+echo arrversion=(${pacversion//./ }^)
 echo majorversion=${arrversion[0]}
 echo minorversion=${arrversion[1]}
-echo # revisionversion=${arrversion[2]}
 echo if [ "$majorversion" -lt "5" ]; then
 echo     upgradepacman="yes"
-echo elif [ "$majorversion" -eq "5" ] && [ "$minorversion" -lt "2" ]; then
+echo elif [ "$majorversion" -eq "5" ] ^&^& [ "$minorversion" -lt "2" ]; then
 echo     upgradepacman="yes"
 echo fi
 echo if [ "$upgradepacman" = "yes" ] ; then
@@ -40,15 +39,11 @@ echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/pacman-5.2.1-6
 echo else
 echo     echo "Not upgrading pacman"
 echo fi
-echo # :: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
-echo # :: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-echo # :: echo pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-echo # :: echo pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
 echo done
-)>C:\TEMP\updatekeys.sh
+)>C:\TEMP\updatepacman.sh
 
 c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
-c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatekeys.sh" || EXIT /B 1
+c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatepacman.sh" || EXIT /B 1
 :: c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
