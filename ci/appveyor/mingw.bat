@@ -13,8 +13,7 @@ echo using gcc : %FLAVOR% : %ARCH%-w64-mingw32-g++.exe ; > %USERPROFILE%\user-co
 SET UPPERFLAVOR=%FLAVOR%
 CALL :TOUPPER UPPERFLAVOR
 
-:: Update pacman. Notes about new keys and zstd archive format:
-:: https://www.msys2.org/news
+:: Update pacman. Notes about new keys and zstd archive format at https://www.msys2.org/news
 
 if not exist "C:\TEMP" mkdir C:\TEMP
 
