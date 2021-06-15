@@ -30,7 +30,7 @@ echo pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
 
 c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
 c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatekeys.sh" || EXIT /B 1
-c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
+:: c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
 :: Optional: comment out ones this library does not need, 
