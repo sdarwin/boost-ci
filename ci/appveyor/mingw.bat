@@ -13,8 +13,8 @@ echo using gcc : %FLAVOR% : %ARCH%-w64-mingw32-g++.exe ; > %USERPROFILE%\user-co
 SET UPPERFLAVOR=%FLAVOR%
 CALL :TOUPPER UPPERFLAVOR
 
-:: Upgrade pacman packages
-:: https://www.msys2.org/news/#2020-06-29-new-packagers
+:: Update pacman. Notes about new keys and zstd archive format:
+:: https://www.msys2.org/news
 
 if not exist "C:\TEMP" mkdir C:\TEMP
 
@@ -33,10 +33,12 @@ echo     upgradepacman="yes"
 echo fi
 echo if [ "$upgradepacman" = "yes" ] ; then
 echo     echo "Now upgrading pacman"
+echo     echo "Keys:"
 echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
 echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
 echo     pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
 echo     pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+echo     echo "Packages:"
 echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/libzstd-1.4.4-2-x86_64.pkg.tar.xz"
 echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/zstd-1.4.4-2-x86_64.pkg.tar.xz"
 echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/pacman-5.2.1-6-x86_64.pkg.tar.xz"
@@ -54,6 +56,7 @@ c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatepacman.sh" || EXIT /B 1
 :: so people can copy this script to another library.
 
 FOR %%a IN ("gcc" "icu" "libiconv" "openssl" "xz" "zlib") DO (
+    :: check if the package has already been installed.
     c:\msys64\usr\bin\bash -l -c "pacman -Qi mingw-w64-%ARCH%-%%a"
 
     if %errorlevel 1 (
