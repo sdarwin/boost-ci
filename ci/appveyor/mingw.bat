@@ -40,14 +40,15 @@ echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/pacman-5.2.1-6
 echo else
 echo     echo "Not upgrading pacman"
 echo fi
-:: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
-:: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-:: echo pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-:: echo pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
-)>C:\TEMP\updatepacman.sh
+echo # :: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+echo # :: echo curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+echo # :: echo pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+echo # :: echo pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+echo done
+)>C:\TEMP\updatekeys.sh
 
 c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
-c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatepacman.sh" || EXIT /B 1
+c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatekeys.sh" || EXIT /B 1
 :: c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
