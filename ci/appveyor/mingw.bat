@@ -37,8 +37,12 @@ c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatekeys.sh" || EXIT /B 1
 :: so people can copy this script to another library.
 
 FOR %%a IN ("gcc" "icu" "libiconv" "openssl" "xz" "zlib") DO (
-    c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
-      "pacman -Sy --needed --noconfirm %FLAVOR%/mingw-w64-%ARCH%-%%a" || EXIT /B 1
+    c:\msys64\usr\bin\bash -l -c "pacman -Qi mingw-w64-%ARCH%-%%a"
+
+    if %errorlevel 1 (
+        c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
+        "pacman -Sy --needed --noconfirm %FLAVOR%/mingw-w64-%ARCH%-%%a" || EXIT /B 1
+        )
 )
 c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
   "pacman --sync --needed --noconfirm python3" || EXIT /B 1
