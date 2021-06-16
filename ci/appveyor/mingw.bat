@@ -54,7 +54,7 @@ c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatepacman.sh" || EXIT /B 1
 
 FOR %%a IN ("gcc" "icu" "libiconv" "openssl" "xz" "zlib") DO (
     :: check if the package has already been installed.
-    c:\msys64\usr\bin\bash -l -c "pacman -Qi mingw-w64-%ARCH%-%%a" > nul 2>&1
+    c:\msys64\usr\bin\bash -l -c "pacman -Qi mingw-w64-%ARCH%-%%a" >nul 2>&1
 
     if %errorlevel 1 (
         c:\msys64\usr\bin\env MSYSTEM=%UPPERFLAVOR% c:\msys64\usr\bin\bash -l -c ^
