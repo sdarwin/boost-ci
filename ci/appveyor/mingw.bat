@@ -46,9 +46,7 @@ echo     echo "Not upgrading pacman"
 echo fi
 )>C:\TEMP\updatepacman.sh
 
-c:\msys64\usr\bin\bash -l -c "pacman -Qe" || EXIT /B 1
 c:\msys64\usr\bin\bash -l -c "/c/TEMP/updatepacman.sh" || EXIT /B 1
-:: c:\msys64\usr\bin\bash -l -c "pacman -Syu --noconfirm" || EXIT /B 1
 
 :: Install packages needed to build boost
 :: Optional: comment out ones this library does not need, 
