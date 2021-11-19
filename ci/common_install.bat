@@ -23,6 +23,9 @@ git submodule update -q --init tools/boostdep || EXIT /B 1
 xcopy /s /e /q /I %BOOST_CI_SRC_FOLDER% libs\%SELF% || EXIT /B 1
 REM Old configs expect boost in source folder
 cd ..
+sleep 1
+icacls boost-root
+icacls src
 move boost-root  %BOOST_CI_SRC_FOLDER%\
 set BOOST_ROOT=%BOOST_CI_SRC_FOLDER%\boost-root
 cd %BOOST_ROOT%
