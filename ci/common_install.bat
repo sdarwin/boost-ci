@@ -26,7 +26,13 @@ cd ..
 sleep 1
 icacls boost-root
 icacls src
-move boost-root  %BOOST_CI_SRC_FOLDER%\
+cd src
+touch test.txt
+dir
+icacls ci
+dir
+cd ..
+move boost-root %BOOST_CI_SRC_FOLDER%\
 set BOOST_ROOT=%BOOST_CI_SRC_FOLDER%\boost-root
 cd %BOOST_ROOT%
 
