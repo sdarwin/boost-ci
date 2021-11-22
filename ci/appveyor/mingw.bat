@@ -33,10 +33,14 @@ echo fi
 echo if [ "$upgradepacman" = "yes" ] ; then
 echo     echo "Now upgrading pacman"
 echo     echo "Keys:"
-echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
-echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-echo     pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
-echo     pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+REM echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+REM echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+REM echo     pacman-key --verify msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz.sig
+REM echo     pacman --noconfirm -U msys2-keyring-r21.b39fb11-1-any.pkg.tar.xz
+echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-1~20201002-1-any.pkg.tar.xz
+echo     curl -O http://repo.msys2.org/msys/x86_64/msys2-keyring-1~20201002-1-any.pkg.tar.xz.sig
+echo     pacman-key --verify msys2-keyring-1~20201002-1-any.pkg.tar.xz.sig
+echo     pacman --noconfirm -U msys2-keyring-1~20201002-1-any.pkg.tar.xz
 echo     echo "Packages:"
 echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/libzstd-1.4.5-2-x86_64.pkg.tar.xz"
 echo     pacman --noconfirm -U "http://repo.msys2.org/msys/x86_64/zstd-1.4.5-2-x86_64.pkg.tar.xz"
