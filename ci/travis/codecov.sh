@@ -49,6 +49,8 @@ cd $TRAVIS_BUILD_DIR
 
 # coverage files are in ../../b2 from this location
 lcov --gcov-tool=$GCOV --rc lcov_branch_coverage=${LCOV_BRANCH_COVERAGE:-1} --base-directory "$BOOST_ROOT/libs/$SELF" --directory "$BOOST_ROOT" --capture --output-file all.info
+# dump a summary on the console
+lcov --list all.info
 
 # all.info contains all the coverage info for all projects - limit to ours
 # first we extract the interesting headers for our project then we use that list to extract the right things
