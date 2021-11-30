@@ -22,7 +22,8 @@ set -ex
 
 if [[ "$1" == "setup" ]]; then
     export B2_VARIANT=debug
-    export B2_CXXFLAGS="${B2_CXXFLAGS:+$B2_CXXFLAGS }-fkeep-static-functions --coverage"
+    # export B2_CXXFLAGS="${B2_CXXFLAGS:+$B2_CXXFLAGS }-fkeep-static-functions --coverage"
+    export B2_CXXFLAGS="${B2_CXXFLAGS:+$B2_CXXFLAGS } --coverage"
     export B2_LINKFLAGS="${B2_LINKFLAGS:+$B2_LINKFLAGS }--coverage"
 
 elif [[ "$1" == "upload" ]]; then
