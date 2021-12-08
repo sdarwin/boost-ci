@@ -31,7 +31,7 @@ IF DEFINED SCRIPT (
     ECHO pwd...
     echo %cd%
     ECHO dir...
-    dir libs/static_string/test
+    dir libs\static_string\test
     REM b2 --abbreviate-paths %B2_TARGETS% %B2_TOOLCXX% %B2_CXXSTD% %B2_CXXFLAGS% %B2_DEFINES% %B2_THREADING% %B2_ADDRESS_MODEL% %B2_LINK% %B2_VARIANT% -j3
     b2 %B2_TARGETS% %B2_TOOLCXX% %B2_CXXSTD% %B2_CXXFLAGS% %B2_DEFINES% %B2_THREADING% %B2_ADDRESS_MODEL% %B2_LINK% %B2_VARIANT% -j3
 )
