@@ -18,7 +18,7 @@ export UBSAN_OPTIONS=print_stacktrace=1,report_error_type=1
 
 cd "$BOOST_ROOT"
 
-${B2_WRAPPER} ./b2 --verbose ${B2_TARGETS} "${B2_ARGS[@]}" "$@"
+${B2_WRAPPER} ./b2 --debug-configuration -d+2 ${B2_TARGETS} "${B2_ARGS[@]}" "$@"
 
 if [ "$B2_USE_CCACHE" == "1" ] && command -v ccache &> /dev/null; then
   echo "CCache summary"
