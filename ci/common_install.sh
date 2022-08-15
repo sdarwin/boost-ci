@@ -48,6 +48,8 @@ cd ..
 git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/boost.git boost-root
 cd boost-root
 git submodule update -q --init tools/boostdep
+curl -o tools/boostdep/depinst/depinst.py https://raw.githubusercontent.com/sdarwin/boostdep/feature/retry/depinst/depinst.py
+chmod 755 tools/boostdep/depinst/depinst.py
 mkdir -p libs/$SELF
 cp -r $BOOST_CI_SRC_FOLDER/* libs/$SELF
 
@@ -59,7 +61,7 @@ if [[ -n "$GIT_FETCH_JOBS" ]]; then
     DEPINST_ARGS+=("--git_args" "--jobs $GIT_FETCH_JOBS")
 fi
 
-$pythonexecutable tools/boostdep/depinst/depinst.py --include benchmark --include example --include examples --include tools "${DEPINST_ARGS[@]}" $DEPINST $SELF
+$pythonexecutable tools/boostdep/depinst/depinst.py -v --include benchmark --include example --include examples --include tools "${DEPINST_ARGS[@]}" $DEPINST $SELF
 
 # Deduce B2_TOOLSET if unset from B2_COMPILER
 if [ -z "$B2_TOOLSET" ] && [ -n "$B2_COMPILER" ]; then
