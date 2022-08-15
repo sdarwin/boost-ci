@@ -21,6 +21,7 @@ set BOOST_BRANCH="boost-1.80.0"
 git clone -b %BOOST_BRANCH% --depth 1 https://github.com/boostorg/boost.git boost-root || EXIT /B 1
 cd boost-root || EXIT /B 1
 git submodule update -q --init tools/boostdep || EXIT /B 1
+curl -o tools/boostdep/depinst/depinst.py https://raw.githubusercontent.com/sdarwin/boostdep/feature/retry/depinst/depinst.py
 xcopy /s /e /q /I %BOOST_CI_SRC_FOLDER% libs\%SELF% || EXIT /B 1
 set BOOST_ROOT=%cd%
 
