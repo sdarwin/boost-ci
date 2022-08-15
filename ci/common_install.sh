@@ -45,6 +45,8 @@ fi
 
 cd ..
 
+export BOOST_BRANCH="boost-1.80.0"
+
 git clone -b $BOOST_BRANCH --depth 1 https://github.com/boostorg/boost.git boost-root
 cd boost-root
 git submodule update -q --init tools/boostdep
