@@ -31,7 +31,7 @@ set DEPINST_ARGS=
 if not "%GIT_FETCH_JOBS%" == "" (
     set DEPINST_ARGS=--git_args "--jobs %GIT_FETCH_JOBS%"
 )
-python tools/boostdep/depinst/depinst.py --include benchmark --include example --include examples --include tools %DEPINST_ARGS% %DEPINST% %SELF:\=/% || EXIT /B 1
+python tools/boostdep/depinst/depinst.py -v --include benchmark --include example --include examples --include tools %DEPINST_ARGS% %DEPINST% %SELF:\=/% || EXIT /B 1
 
 if defined ADDPATH (set "PATH=%ADDPATH%%PATH%")
 
