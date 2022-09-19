@@ -100,7 +100,20 @@ elif [[ "$1" == "upload" ]]; then
     fi
 
     chmod +x codecov
+    set +e
     ./codecov --verbose --nonZero ${CODECOV_NAME:+--name "$CODECOV_NAME"} -f coverage.info -X search
+    if [ ! $? = "0" ]; then
+        echo "==========================="
+        echo ""
+        echo "Codecov upload failed."
+        echo ""
+        echo "Check that the repository has been enabled in codecov.io. Sign in, sync repositories, and enable this repository."
+        echo ""
+        echo "Another important thing to check is if the token has been configured correctly and has been input to the CI process using secrets." 
+        echo ""
+        echo "==========================="
+    fi
+    set -e  
 else
     echo "Invalid parameter for codecov.sh: '$1'." >&2
     false
