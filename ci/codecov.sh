@@ -53,9 +53,11 @@ elif [[ "$1" == "upload" ]]; then
     fi
 
     # install the latest lcov we know works
+    : "${BOOST_CI_LCOV_VERSION:=v1.15}"
     rm -rf /tmp/lcov
     cd /tmp
-    git clone --depth 1 -b v1.15 https://github.com/linux-test-project/lcov.git
+    echo "Downloading lcov at version ${BOOST_CI_LCOV_VERSION}:"
+    git clone --depth 1 -b ${BOOST_CI_LCOV_VERSION} https://github.com/linux-test-project/lcov.git
     export PATH=/tmp/lcov/bin:$PATH
     command -v lcov
     lcov --version
