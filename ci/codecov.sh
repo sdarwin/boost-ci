@@ -57,7 +57,10 @@ elif [[ "$1" == "upload" ]]; then
     rm -rf /tmp/lcov
     cd /tmp
     echo "Downloading lcov at version ${BOOST_CI_LCOV_VERSION}:"
-    git clone --depth 1 -b ${BOOST_CI_LCOV_VERSION} https://github.com/linux-test-project/lcov.git
+    git clone https://github.com/linux-test-project/lcov.git
+    cd lcov
+    git checkout ${BOOST_CI_LCOV_VERSION}
+    cd ..
     export PATH=/tmp/lcov/bin:$PATH
     command -v lcov
     lcov --version
