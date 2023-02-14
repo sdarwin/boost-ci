@@ -80,7 +80,7 @@ elif [[ "$1" == "upload" ]]; then
     echo headers that matter:
     cat /tmp/interesting
     echo "RUNNING LCOV WITH XARGS"
-    xargs --verbose -L 999999 -a /tmp/interesting lcov --ignore-errors unused --rc lcov_branch_coverage=${LCOV_BRANCH_COVERAGE} --extract all.info {} "*/libs/$SELF/*" --output-file coverage.info
+    xargs --verbose -L 999999 -a /tmp/interesting lcov --ignore-errors unused --rc lcov_branch_coverage=${LCOV_BRANCH_COVERAGE} --extract all.info "*/libs/$SELF/*" --output-file coverage.info
 
     # dump a summary on the console - helps us identify problems in pathing
     # note this has test file coverage in it - if you do not want to count test
