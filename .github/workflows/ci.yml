@@ -43,6 +43,7 @@ jobs:
       matrix:
         include:
           # Linux, gcc
+          - { compiler: clang-5.0, cxxstd: '03,11,14,1z',    os: ubuntu-latest, container: 'ubuntu:18.04' }
           - { compiler: gcc-7,     cxxstd: '03,11,14,17',    os: ubuntu-20.04 }
           - { compiler: gcc-8,     cxxstd: '03,11,14,17,2a', os: ubuntu-20.04 }
           - { compiler: gcc-9,     cxxstd: '03,11,14,17,2a', os: ubuntu-20.04 }
