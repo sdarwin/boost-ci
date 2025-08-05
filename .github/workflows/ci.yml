@@ -12,7 +12,7 @@
 #
 # To use it, copy this file into your repository as `.github/workflows/ci.yml` and
 # customize it appropriately.
-# 
+#   
 ---
 name: Boost.CI
 
